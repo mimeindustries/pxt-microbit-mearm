@@ -27,13 +27,11 @@ enum Joystick {
 namespace mearm {
   
   let servos = [
-    {minPulse: 530,  maxPulse: 2400, minAngle: -90, maxAngle: 90,  currentAngle: 0,  pin: AnalogPin.P13},
-    {minPulse: 530,  maxPulse: 1450, minAngle: 0,   maxAngle: 90,  currentAngle: 45, pin: AnalogPin.P15},
-    {minPulse: 530,  maxPulse: 2000, minAngle: 0,   maxAngle: 135, currentAngle: 67, pin: AnalogPin.P14},
-    {minPulse: 1400, maxPulse: 2400, minAngle: 0,   maxAngle: 90,  currentAngle: 45, pin: AnalogPin.P16}
+    {minPulse: 530,  maxPulse: 2400, minAngle: -90, maxAngle: 90,  currentAngle: 0,  pin: AnalogPin.P13, joystick: AnalogPin.P0, direction: 1},
+    {minPulse: 530,  maxPulse: 1450, minAngle: 0,   maxAngle: 90,  currentAngle: 45, pin: AnalogPin.P15, joystick: AnalogPin.P1, direction: -1},
+    {minPulse: 530,  maxPulse: 2000, minAngle: 0,   maxAngle: 135, currentAngle: 67, pin: AnalogPin.P14, joystick: AnalogPin.P2, direction: -1},
+    {minPulse: 1400, maxPulse: 2400, minAngle: 0,   maxAngle: 90,  currentAngle: 45, pin: AnalogPin.P16, joystick: AnalogPin.P3, direction: 1}
   ];
-  
-  let joystickPins = [AnalogPin.P0, AnalogPin.P1, AnalogPin.P2, AnalogPin.P3];
 
   /**
    * Implementation of moving a servo to a specific angle
@@ -46,9 +44,7 @@ namespace mearm {
       angle = _servo.maxAngle;
     }
     _servo.currentAngle = angle;
-    let pulseWidth = _servo.maxPulse - (((angle - _servo.minAngle) / (_servo.maxAngle - _servo.minAngle)) * (_servo.maxPulse - _servo.minPulse));
-
-    //console.log("pulsewidth " + pulseWidth);
+    let pulseWidth = _servo.maxPulse - ((angle - _servo.minAngle) * (_servo.maxPulse - _servo.minPulse)) / (_servo.maxAngle - _servo.minAngle);
 
     pins.servoSetPulse(_servo.pin, pulseWidth);
   }
@@ -90,12 +86,40 @@ namespace mearm {
   }
 
   /**
-   * Returns the value of a joystick with zero at the centre point (-ve = left / down, +ve = right / up)
+   * Returns the value of a joystick as a percentage with zero at the centre point (-ve = left / down, +ve = right / up)
    */
   //% weight=30
   //% blockId=joystick_value block="%joystick=Joystick|joystick"
   export function joystick(joystick: Joystick): number {
-    let value = pins.analogReadPin(joystickPins[joystick]);
-    return value - 512;
+    // cutoffs to factor out off-centre resistor divider
+    let lowCutoff = 20;
+    let highCutoff = 505;
+
+    // Enable the joystick going into P3 so it doesn't affect the LEDs
+    if(joystick === Joystick.RightHorizontal){
+      pins.digitalWritePin(DigitalPin.P12, 1);
+    }
+    // Read the value
+    let rawValue = pins.analogReadPin(servos[joystick].joystick);
+    // Disable again
+    if(joystick === Joystick.RightHorizontal){
+      pins.digitalWritePin(DigitalPin.P12, 0);
+    }
+
+    // Turn into a percentage
+    let centred = rawValue - 512;
+    let direction = centred < 0 ? -1 : 1;
+    let absolute = centred * direction;
+    let val = absolute - lowCutoff;
+
+    if(val < 0){
+      val = 0;
+    }else if(val > highCutoff - lowCutoff){
+      val = highCutoff - lowCutoff;
+    }
+
+    let percentage = (servos[joystick].direction * direction * val * 100) / (highCutoff - lowCutoff);
+
+    return percentage;
   }
 }
