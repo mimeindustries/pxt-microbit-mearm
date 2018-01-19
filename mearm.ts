@@ -33,7 +33,7 @@ namespace mearm {
     {minPulse: 1400, maxPulse: 2400, minAngle: 0,   maxAngle: 90,  currentAngle: 45, pin: AnalogPin.P16}
   ];
   
-  let joystickPins = [AnalogPin.P0, AnalogPin.P1, AnalogPin.P1, AnalogPin.P3];
+  let joystickPins = [AnalogPin.P0, AnalogPin.P1, AnalogPin.P2, AnalogPin.P3];
 
   /**
    * Implementation of moving a servo to a specific angle
