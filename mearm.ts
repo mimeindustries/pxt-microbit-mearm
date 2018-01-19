@@ -46,11 +46,9 @@ namespace mearm {
       angle = _servo.maxAngle;
     }
     _servo.currentAngle = angle;
-    console.log("Setting servo " + servo + " Angle to " + angle);
     let pulseWidth = _servo.maxPulse - (((angle - _servo.minAngle) / (_servo.maxAngle - _servo.minAngle)) * (_servo.maxPulse - _servo.minPulse));
-    
-    console.log("pin " + _servo.pin);
-    console.log("pulsewidth " + pulseWidth);
+
+    //console.log("pulsewidth " + pulseWidth);
 
     pins.servoSetPulse(_servo.pin, pulseWidth);
   }
@@ -79,7 +77,6 @@ namespace mearm {
   //% weight=50
   //% blockId=open_grip block="open grip"
   export function openGrip(){
-    console.log("Open Grip");
     setServoAngle(MearmServo.Grip, 90);
   }
 
@@ -89,7 +86,6 @@ namespace mearm {
   //% weight=40
   //% blockId=close_grip block="close grip"
   export function closeGrip(){
-    console.log("Close Grip");
     setServoAngle(MearmServo.Grip, 0);
   }
 
