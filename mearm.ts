@@ -66,6 +66,15 @@ namespace mearm {
   export function moveByAngle(servo: MearmServo, angle: number){
     setServoAngle(servo, servos[servo].currentAngle + angle);
   }
+
+  /**
+   * Move a servo to centre
+   */
+  //% weight=70
+  //% blockId=move_to_centre block="move|%servo=MearmServo|to centre position"
+  export function moveToCentre(servo: MearmServo){
+    setServoAngle(servo, servos[servo].minAngle + (servos[servo].maxAngle - servos[servo].minAngle) /2);
+  }
   
   /**
    * Open the grip
