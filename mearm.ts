@@ -53,7 +53,7 @@ namespace mearm {
    * Move a servo to an absolute angle
    */
   //% weight=90
-  //% blockId=move_to block="move|%servo=MearmServo|servo|to|%angle|degrees"
+  //% blockId=move_to block="move|%servo=MearmServo|to|%angle|degrees"
   export function moveToAngle(servo: MearmServo, angle: number){
     setServoAngle(servo, angle);
   }
@@ -62,7 +62,7 @@ namespace mearm {
    * Move a servo by a relative angle
    */
   //% weight=80
-  //% blockId=move_by block="move|%servo=MearmServo|servo|by|%angle|degrees"
+  //% blockId=move_by block="move|%servo=MearmServo|by|%angle|degrees"
   export function moveByAngle(servo: MearmServo, angle: number){
     setServoAngle(servo, servos[servo].currentAngle + angle);
   }
