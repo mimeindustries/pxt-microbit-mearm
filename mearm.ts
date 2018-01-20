@@ -46,10 +46,12 @@ namespace mearm {
     }else if(angle > _servo.maxAngle){
       angle = _servo.maxAngle;
     }
-    _servo.currentAngle = angle;
-    let pulseWidth = _servo.maxPulse - ((angle - _servo.minAngle) * (_servo.maxPulse - _servo.minPulse)) / (_servo.maxAngle - _servo.minAngle);
+    if(angle !== _servo.currentAngle){
+      _servo.currentAngle = angle;
+      let pulseWidth = _servo.maxPulse - ((angle - _servo.minAngle) * (_servo.maxPulse - _servo.minPulse)) / (_servo.maxAngle - _servo.minAngle);
 
-    pins.servoSetPulse(_servo.pin, pulseWidth);
+      pins.servoSetPulse(_servo.pin, pulseWidth);
+    }
   }
 
   /**
