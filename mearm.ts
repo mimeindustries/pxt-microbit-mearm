@@ -14,10 +14,10 @@ enum Joystick {
   LeftHorizontal = 0,
   //% block="Left Vertical"
   LeftVertical = 1,
-  //% block="Right Horizontal"
-  RightHorizontal = 2,
   //% block="Right Vertical"
-  RightVertical = 3
+  RightVertical = 2,
+  //% block="Right Horizontal"
+  RightHorizontal = 3
 }
 
 /**
