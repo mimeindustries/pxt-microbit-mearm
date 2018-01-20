@@ -33,6 +33,9 @@ namespace mearm {
     {minPulse: 1400, maxPulse: 2400, minAngle: 0,   maxAngle: 90,  currentAngle: 45, pin: AnalogPin.P16, joystick: AnalogPin.P3, direction: 1}
   ];
 
+  // Disable the LEDs
+  led.enable(false);
+  
   /**
    * Implementation of moving a servo to a specific angle
    */
