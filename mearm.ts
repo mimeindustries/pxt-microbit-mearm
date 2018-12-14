@@ -1,23 +1,23 @@
 enum MearmServo {
   //% block="Base"
   Base = 0,
-  //% block="Lower"
-  Lower = 1,
-  //% block="Upper"
-  Upper = 2,
+  //% block="Right"
+  Right = 1,
+  //% block="Left"
+  Left = 2,
   //% block="Grip"
   Grip = 3
 }
 
 enum Joystick {
-  //% block="Left Horizontal"
-  LeftHorizontal = 0,
-  //% block="Left Vertical"
-  LeftVertical = 1,
-  //% block="Right Vertical"
-  RightVertical = 2,
-  //% block="Right Horizontal"
-  RightHorizontal = 3
+  //% block="Left JoyX"
+  LeftJoyX = 0,
+  //% block="Left JoyY"
+  LeftJoyY = 1,
+  //% block="Right JoyY"
+  RightJoyY = 2,
+  //% block="Right JoyX"
+  RightJoyX = 3
 }
 
 /**
@@ -110,13 +110,13 @@ namespace mearm {
     let highCutoff = 505;
 
     // Enable the joystick going into P3 so it doesn't affect the LEDs
-    if(joystick === Joystick.RightHorizontal){
+    if(joystick === Joystick.RightJoyX){
       pins.digitalWritePin(DigitalPin.P12, 1);
     }
     // Read the value
     let rawValue = pins.analogReadPin(servos[joystick].joystick);
     // Disable again
-    if(joystick === Joystick.RightHorizontal){
+    if(joystick === Joystick.RightJoyX){
       pins.digitalWritePin(DigitalPin.P12, 0);
     }
 

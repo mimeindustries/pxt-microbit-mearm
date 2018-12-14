@@ -1,7 +1,7 @@
 function reset()  {
     mearm.moveToCentre(MearmServo.Base)
-    mearm.moveToCentre(MearmServo.Lower)
-    mearm.moveToCentre(MearmServo.Upper)
+    mearm.moveToCentre(MearmServo.Right)
+    mearm.moveToCentre(MearmServo.Left)
     mearm.moveToCentre(MearmServo.Grip)
 }
 input.onButtonPressed(Button.B, () => {
@@ -15,24 +15,24 @@ input.onButtonPressed(Button.AB, () => {
 })
 reset()
 basic.forever(() => {
-    if (mearm.joystick(Joystick.LeftHorizontal) < 0) {
+    if (mearm.joystick(Joystick.LeftJoyX) < 0) {
         mearm.moveByAngle(MearmServo.Base, -5)
-    } else if (mearm.joystick(Joystick.LeftHorizontal) > 0) {
+    } else if (mearm.joystick(Joystick.LeftJoyX) > 0) {
         mearm.moveByAngle(MearmServo.Base, 5)
     }
-    if (mearm.joystick(Joystick.LeftVertical) < 0) {
-        mearm.moveByAngle(MearmServo.Lower, -5)
-    } else if (mearm.joystick(Joystick.LeftVertical) > 0) {
-        mearm.moveByAngle(MearmServo.Lower, 5)
+    if (mearm.joystick(Joystick.LeftJoyY) < 0) {
+        mearm.moveByAngle(MearmServo.Right, -5)
+    } else if (mearm.joystick(Joystick.LeftJoyY) > 0) {
+        mearm.moveByAngle(MearmServo.Right, 5)
     }
-    if (mearm.joystick(Joystick.RightVertical) < 0) {
-        mearm.moveByAngle(MearmServo.Upper, -5)
-    } else if (mearm.joystick(Joystick.RightVertical) > 0) {
-        mearm.moveByAngle(MearmServo.Upper, 5)
+    if (mearm.joystick(Joystick.RightJoyY) < 0) {
+        mearm.moveByAngle(MearmServo.Left, -5)
+    } else if (mearm.joystick(Joystick.JoyY) > 0) {
+        mearm.moveByAngle(MearmServo.Left, 5)
     }
-    if (mearm.joystick(Joystick.RightHorizontal) < 0) {
+    if (mearm.joystick(Joystick.RightJoyX) < 0) {
         mearm.moveByAngle(MearmServo.Grip, -5)
-    } else if (mearm.joystick(Joystick.RightHorizontal) > 0) {
+    } else if (mearm.joystick(Joystick.RightJoyX) > 0) {
         mearm.moveByAngle(MearmServo.Grip, 5)
     }
 })
