@@ -27,7 +27,7 @@ enum Joystick {
 namespace mearm {
   
   let servos = [
-    {minPulse: 530,  maxPulse: 2400, minAngle: -90, maxAngle: 90,  currentAngle: 999, pin: AnalogPin.P13, joystick: AnalogPin.P0, direction: 1},
+    {minPulse: 630,  maxPulse: 2400, minAngle: 0,   maxAngle: 180,  currentAngle: 999, pin: AnalogPin.P13, joystick: AnalogPin.P0, direction: 1},
     {minPulse: 1300, maxPulse: 2400, minAngle: 0,   maxAngle: 135,  currentAngle: 999, pin: AnalogPin.P15, joystick: AnalogPin.P1, direction: -1},
     {minPulse: 630,  maxPulse: 1900, minAngle: 0,   maxAngle: 135, currentAngle: 999, pin: AnalogPin.P14, joystick: AnalogPin.P2, direction: 1},
     {minPulse: 1400, maxPulse: 2400, minAngle: 0,   maxAngle: 90,  currentAngle: 999, pin: AnalogPin.P16, joystick: AnalogPin.P3, direction: -1}
@@ -73,12 +73,12 @@ namespace mearm {
   }
 
   /**
-   * Move a servo to centre
+   * Move a servo to centre (90 deg for easier calibration)
    */
   //% weight=70
   //% blockId=move_to_centre block="move|%servo=MearmServo|to centre position"
   export function moveToCentre(servo: MearmServo){
-    setServoAngle(servo, servos[servo].minAngle + (servos[servo].maxAngle - servos[servo].minAngle) /2);
+    setServoAngle(servo, 90);
   }
   
   /**
