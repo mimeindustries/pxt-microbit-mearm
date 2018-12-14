@@ -27,7 +27,7 @@ basic.forever(() => {
     }
     if (mearm.joystick(Joystick.RightJoyY) < 0) {
         mearm.moveByAngle(MearmServo.Left, -5)
-    } else if (mearm.joystick(Joystick.JoyY) > 0) {
+    } else if (mearm.joystick(Joystick.RightJoyY) > 0) {
         mearm.moveByAngle(MearmServo.Left, 5)
     }
     if (mearm.joystick(Joystick.RightJoyX) < 0) {
