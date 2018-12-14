@@ -27,10 +27,10 @@ enum Joystick {
 namespace mearm {
   
   let servos = [
-    {minPulse: 630,  maxPulse: 2400, minAngle: 0,   maxAngle: 180,  currentAngle: 999, pin: AnalogPin.P13, joystick: AnalogPin.P0, direction: 1},
-    {minPulse: 1300, maxPulse: 2400, minAngle: 68,   maxAngle: 180,  currentAngle: 999, pin: AnalogPin.P15, joystick: AnalogPin.P1, direction: 1},
-    {minPulse: 630,  maxPulse: 1900, minAngle: 0,   maxAngle: 129, currentAngle: 999, pin: AnalogPin.P14, joystick: AnalogPin.P2, direction: 1},
-    {minPulse: 1400, maxPulse: 2400, minAngle: 90,   maxAngle: 180,  currentAngle: 999, pin: AnalogPin.P16, joystick: AnalogPin.P3, direction: 1}
+    {minPulse: 600,  maxPulse: 2400, minAngle: 0,   maxAngle: 180,  currentAngle: 999, pin: AnalogPin.P13, joystick: AnalogPin.P0, direction: 1},
+    {minPulse: 1050, maxPulse: 2400, minAngle: 0,   maxAngle: 135,  currentAngle: 999, pin: AnalogPin.P15, joystick: AnalogPin.P1, direction: 1},
+    {minPulse: 900,  maxPulse: 2100, minAngle: 30,   maxAngle: 150, currentAngle: 999, pin: AnalogPin.P14, joystick: AnalogPin.P2, direction: 1},
+    {minPulse: 600, maxPulse: 1500, minAngle: 90,   maxAngle: 180,  currentAngle: 999, pin: AnalogPin.P16, joystick: AnalogPin.P3, direction: 1}
   ];
 
   // Disable the LEDs
