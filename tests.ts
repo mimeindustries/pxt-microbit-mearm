@@ -16,23 +16,23 @@ input.onButtonPressed(Button.AB, () => {
 reset()
 basic.forever(() => {
     if (mearm.joystick(Joystick.LeftJoyX) < 0) {
-        mearm.moveByAngle(MearmServo.Base, -5)
+        mearm.moveByAngle(MearmServo.Base, -1)
     } else if (mearm.joystick(Joystick.LeftJoyX) > 0) {
-        mearm.moveByAngle(MearmServo.Base, 5)
+        mearm.moveByAngle(MearmServo.Base, 1)
     }
     if (mearm.joystick(Joystick.LeftJoyY) < 0) {
-        mearm.moveByAngle(MearmServo.Right, -5)
+        mearm.moveByAngle(MearmServo.Right, -1)
     } else if (mearm.joystick(Joystick.LeftJoyY) > 0) {
-        mearm.moveByAngle(MearmServo.Right, 5)
+        mearm.moveByAngle(MearmServo.Right, 1)
     }
     if (mearm.joystick(Joystick.RightJoyY) < 0) {
-        mearm.moveByAngle(MearmServo.Left, -5)
+        mearm.moveByAngle(MearmServo.Left, -1)
     } else if (mearm.joystick(Joystick.RightJoyY) > 0) {
-        mearm.moveByAngle(MearmServo.Left, 5)
+        mearm.moveByAngle(MearmServo.Left, 1)
     }
     if (mearm.joystick(Joystick.RightJoyX) < 0) {
-        mearm.moveByAngle(MearmServo.Grip, -5)
+        mearm.moveByAngle(MearmServo.Grip, -1)
     } else if (mearm.joystick(Joystick.RightJoyX) > 0) {
-        mearm.moveByAngle(MearmServo.Grip, 5)
+        mearm.moveByAngle(MearmServo.Grip, 1)
     }
 })

@@ -27,10 +27,10 @@ enum Joystick {
 namespace mearm {
   
   let servos = [
-    {minPulse: 600,  maxPulse: 2400, minAngle: 0,   maxAngle: 180,  currentAngle: 999, pin: AnalogPin.P13, joystick: AnalogPin.P0, direction: 1},
+    {minPulse: 600,  maxPulse: 2400, minAngle: 0,   maxAngle: 179,  currentAngle: 999, pin: AnalogPin.P13, joystick: AnalogPin.P0, direction: 1},
     {minPulse: 1050, maxPulse: 2400, minAngle: 0,   maxAngle: 135,  currentAngle: 999, pin: AnalogPin.P15, joystick: AnalogPin.P1, direction: 1},
     {minPulse: 800,  maxPulse: 2100, minAngle: 30,   maxAngle: 160, currentAngle: 999, pin: AnalogPin.P14, joystick: AnalogPin.P2, direction: 1},
-    {minPulse: 1500, maxPulse: 2400, minAngle: 0,   maxAngle: 90,  currentAngle: 999, pin: AnalogPin.P16, joystick: AnalogPin.P3, direction: 1}
+    {minPulse: 1500, maxPulse: 2400, minAngle: 0,   maxAngle: 89,  currentAngle: 999, pin: AnalogPin.P16, joystick: AnalogPin.P3, direction: 1}
   ];
 
   // Disable the LEDs
@@ -73,12 +73,12 @@ namespace mearm {
   }
 
   /**
-   * Move a servo to centre (90 deg for easier calibration)
+   * Move a servo to centre (89 deg for easier calibration)
    */
   //% weight=70
   //% blockId=move_to_centre block="move|%servo=MearmServo|to centre position"
   export function moveToCentre(servo: MearmServo){
-    setServoAngle(servo, 90);
+    setServoAngle(servo, 89);
   }
   
   /**
@@ -87,7 +87,7 @@ namespace mearm {
   //% weight=50
   //% blockId=open_grip block="open grip"
   export function openGrip(){
-    setServoAngle(MearmServo.Grip, 90);
+    setServoAngle(MearmServo.Grip, 89);
   }
 
   /**
