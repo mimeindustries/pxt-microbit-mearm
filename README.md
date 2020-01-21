@@ -38,16 +38,16 @@ Blocks that support the micro:bit connector board for the MeArm. The board has t
 ### Servo identifiers
 
  * **MearmServo.Base** - the base servo
- * **MearmServo.Lower** - the lower part of the arm
- * **MearmServo.Upper** - the upper part of the arm
+ * **MearmServo.Right** - the servo on the right of the arm
+ * **MearmServo.Left** - the servo of the left of the arm
  * **MearmServo.Grip** - the grip
  
 ### Joystick identifiers
 
- * **Joystick.LeftHorizontal** - the horizontal axis of the left joystick
- * **Joystick.LeftVertical** - the vertical axis of the left joystick
- * **Joystick.RightHorizontal** - the horizontal axis of the right joystick
- * **Joystick.RightVertical** - the vertical axis of the right joystick
+ * **Joystick.LeftJoyX** - the horizontal axis of the left joystick
+ * **Joystick.LeftJoyY** - the vertical axis of the left joystick
+ * **Joystick.RightJoyX** - the horizontal axis of the right joystick
+ * **Joystick.RightJoyY** - the vertical axis of the right joystick
 
 
 ## License
@@ -59,5 +59,5 @@ MIT
  * for PXT/microbit
 
 ```package
-mearm-microbit=github:mimeindustries/pxt-microbit-mearm
+mearm-microbit=github:mearm/pxt-microbit-mearm
 ```

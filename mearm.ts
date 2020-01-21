@@ -1,23 +1,23 @@
 enum MearmServo {
   //% block="Base"
   Base = 0,
-  //% block="Lower"
-  Lower = 1,
-  //% block="Upper"
-  Upper = 2,
+  //% block="Right"
+  Right = 1,
+  //% block="Left"
+  Left = 2,
   //% block="Grip"
   Grip = 3
 }
 
 enum Joystick {
-  //% block="Left Horizontal"
-  LeftHorizontal = 0,
-  //% block="Left Vertical"
-  LeftVertical = 1,
-  //% block="Right Vertical"
-  RightVertical = 2,
-  //% block="Right Horizontal"
-  RightHorizontal = 3
+  //% block="Left JoyX"
+  LeftJoyX = 0,
+  //% block="Left JoyY"
+  LeftJoyY = 1,
+  //% block="Right JoyY"
+  RightJoyY = 2,
+  //% block="Right JoyX"
+  RightJoyX = 3
 }
 
 /**
@@ -27,10 +27,10 @@ enum Joystick {
 namespace mearm {
   
   let servos = [
-    {minPulse: 530,  maxPulse: 2400, minAngle: -90, maxAngle: 90,  currentAngle: 999, pin: AnalogPin.P13, joystick: AnalogPin.P0, direction: 1},
-    {minPulse: 1300, maxPulse: 2400, minAngle: 0,   maxAngle: 135,  currentAngle: 999, pin: AnalogPin.P15, joystick: AnalogPin.P1, direction: -1},
-    {minPulse: 630,  maxPulse: 1900, minAngle: 0,   maxAngle: 135, currentAngle: 999, pin: AnalogPin.P14, joystick: AnalogPin.P2, direction: 1},
-    {minPulse: 1400, maxPulse: 2400, minAngle: 0,   maxAngle: 90,  currentAngle: 999, pin: AnalogPin.P16, joystick: AnalogPin.P3, direction: -1}
+    {minPulse: 600,  maxPulse: 2400, minAngle: 0,   maxAngle: 179,  currentAngle: 999, pin: AnalogPin.P13, joystick: AnalogPin.P0, direction: 1},
+    {minPulse: 1050, maxPulse: 2400, minAngle: 0,   maxAngle: 135,  currentAngle: 999, pin: AnalogPin.P15, joystick: AnalogPin.P1, direction: 1},
+    {minPulse: 800,  maxPulse: 2100, minAngle: 30,   maxAngle: 160, currentAngle: 999, pin: AnalogPin.P14, joystick: AnalogPin.P2, direction: 1},
+    {minPulse: 1500, maxPulse: 2400, minAngle: 0,   maxAngle: 89,  currentAngle: 999, pin: AnalogPin.P16, joystick: AnalogPin.P3, direction: 1}
   ];
 
   // Disable the LEDs
@@ -73,12 +73,12 @@ namespace mearm {
   }
 
   /**
-   * Move a servo to centre
+   * Move a servo to centre (89 deg for easier calibration)
    */
   //% weight=70
   //% blockId=move_to_centre block="move|%servo=MearmServo|to centre position"
   export function moveToCentre(servo: MearmServo){
-    setServoAngle(servo, servos[servo].minAngle + (servos[servo].maxAngle - servos[servo].minAngle) /2);
+    setServoAngle(servo, 89);
   }
   
   /**
@@ -87,7 +87,7 @@ namespace mearm {
   //% weight=50
   //% blockId=open_grip block="open grip"
   export function openGrip(){
-    setServoAngle(MearmServo.Grip, 90);
+    setServoAngle(MearmServo.Grip, 89);
   }
 
   /**
@@ -110,13 +110,13 @@ namespace mearm {
     let highCutoff = 505;
 
     // Enable the joystick going into P3 so it doesn't affect the LEDs
-    if(joystick === Joystick.RightHorizontal){
+    if(joystick === Joystick.RightJoyX){
       pins.digitalWritePin(DigitalPin.P12, 1);
     }
     // Read the value
     let rawValue = pins.analogReadPin(servos[joystick].joystick);
     // Disable again
-    if(joystick === Joystick.RightHorizontal){
+    if(joystick === Joystick.RightJoyX){
       pins.digitalWritePin(DigitalPin.P12, 0);
     }
 
